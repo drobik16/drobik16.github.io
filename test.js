@@ -2,6 +2,8 @@ var randomkey = null;
 var totalbonus = 0;
 var TimerId = null;
 var IntervalId = null;
+var count=0;
+var timer;
 
 document.body.appendChild(document.createElement("BR"));
 
@@ -46,6 +48,21 @@ function myfunction(event) {
     not_correct_key();
   }
 }
+  function timeCount() {
+    document.getElementById("countTime").innerHTML = count.toString();
+    count++;
+    timer = window.setTimeout(function(){ timeCount() },1000);
+  }
+   function startCount() {
+    if (!timer)
+      timeCount();
+  }
+  function stopCount() {
+      if (timer) {
+        clearTimeout(timer);
+        timer=null;
+      }
+    }
 function start() {
   if (randomkey === null) {
     randomkey = Math.floor(Math.random()*(key_array.length - 1));
@@ -53,16 +70,10 @@ function start() {
     key_obj[randomkey].style.backgroundColor = "black";	
     obj.innerHTML = key_array[randomkey];
     key_obj[26].innerHTML = 3;
-    IntervalId = setInterval(printdate_s,1000);
-    TimerId = setTimeout(time_over,3000);	
+   	IntervalId = setInterval(printdate_s,1000);
+   	TimerId = setTimeout(time_over,3000);	
   }
-}
-function pause_key() {
-  clearTimeout(TimerId);
-  clearInterval(IntervalId);
-  key_obj[26].innerHTML = "P";
-  inform_obj.innerHTML = 'Пауза';
-}		
+}	
 function printdate_s() {
   key_obj[26].innerHTML--;
 }
@@ -119,4 +130,4 @@ function time_over() {
   }
   randomkey = null;
   start();	
-} 
+}
