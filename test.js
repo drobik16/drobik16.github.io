@@ -48,21 +48,6 @@ function myfunction(event) {
     not_correct_key();
   }
 }
-  function timeCount() {
-    document.getElementById("countTime").innerHTML = count.toString();
-    count++;
-    timer = window.setTimeout(function(){ timeCount() },1000);
-  }
-   function startCount() {
-    if (!timer)
-      timeCount();
-  }
-  function stopCount() {
-      if (timer) {
-        clearTimeout(timer);
-        timer=null;
-      }
-    }
 function start() {
   if (randomkey === null) {
     randomkey = Math.floor(Math.random()*(key_array.length - 1));
