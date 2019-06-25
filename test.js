@@ -2,8 +2,6 @@ var randomkey = null;
 var totalbonus = 0;
 var TimerId = null;
 var IntervalId = null;
-var count=0;
-var timer;
 
 document.body.appendChild(document.createElement("BR"));
 
@@ -14,7 +12,7 @@ obj.className = "key_block";
 document.body.appendChild(document.createElement("BR"));
 document.body.appendChild(document.createElement("BR"));
 
-var key_array= 		["Q","W","E","R","T","Y","U","I","O","P","A","S","D","F","G","H","J","K","L","Z","X","C","V","B","N","M"," "];
+var key_array=    ["Q","W","E","R","T","Y","U","I","O","P","A","S","D","F","G","H","J","K","L","Z","X","C","V","B","N","M"," "];
 var key_code_array= [ 81, 87, 69, 82, 84, 89, 85, 73, 79, 80, 65, 83, 68, 70, 71, 72, 74, 75, 76, 90, 88, 67, 86, 66, 78, 77];
 var key_obj = [];
 
@@ -52,13 +50,19 @@ function start() {
   if (randomkey === null) {
     randomkey = Math.floor(Math.random()*(key_array.length - 1));
     key_obj[randomkey].style.color = "white";
-    key_obj[randomkey].style.backgroundColor = "black";	
+    key_obj[randomkey].style.backgroundColor = "black"; 
     obj.innerHTML = key_array[randomkey];
     key_obj[26].innerHTML = 3;
-   	IntervalId = setInterval(printdate_s,1000);
-   	TimerId = setTimeout(time_over,3000);	
+    IntervalId = setInterval(printdate_s,1000);
+    TimerId = setTimeout(time_over,3000); 
   }
-}	
+}
+function pause_key() {
+  clearTimeout(TimerId);
+  clearInterval(IntervalId);
+  key_obj[26].innerHTML = "P";
+  inform_obj.innerHTML = 'Пауза';
+}   
 function printdate_s() {
   key_obj[26].innerHTML--;
 }
@@ -69,10 +73,10 @@ function correct_key() {
   inform_obj.innerHTML = "Правильно + 1 бал. Итого " + totalbonus + " балов!";
   inform_obj.style.color = "green";
   key_obj[randomkey].style.color = "black";
-  key_obj[randomkey].style.backgroundColor = "white";	
-  obj.innerHTML = "";	
+  key_obj[randomkey].style.backgroundColor = "white"; 
+  obj.innerHTML = ""; 
   randomkey = null;
-  start();	
+  start();  
 }
 function not_correct_key() {
   clearTimeout(TimerId);
@@ -82,11 +86,11 @@ function not_correct_key() {
   inform_obj.style.color = "red";
   if (randomkey != null) {
     key_obj[randomkey].style.color = "black";
-    key_obj[randomkey].style.backgroundColor = "white";	
-    obj.innerHTML = "";	
+    key_obj[randomkey].style.backgroundColor = "white"; 
+    obj.innerHTML = ""; 
   }
   randomkey = null;
-  start();	
+  start();  
 }
 function space_key() {
   clearTimeout(TimerId);
@@ -95,12 +99,12 @@ function space_key() {
   inform_obj.style.color = "black";
   if (randomkey != null) {
     key_obj[randomkey].style.color = "black";
-    key_obj[randomkey].style.backgroundColor = "white";	
-    obj.innerHTML = "";	
+    key_obj[randomkey].style.backgroundColor = "white"; 
+    obj.innerHTML = ""; 
   }
   totalbonus = 0;
   randomkey = null;
-  start();	
+  start();  
 }
 function time_over() {
   clearTimeout(TimerId);
@@ -110,9 +114,9 @@ function time_over() {
   inform_obj.style.color = "red";
   if (randomkey != null) {
     key_obj[randomkey].style.color = "black";
-    key_obj[randomkey].style.backgroundColor = "white";	
-    obj.innerHTML = "";	
+    key_obj[randomkey].style.backgroundColor = "white"; 
+    obj.innerHTML = ""; 
   }
   randomkey = null;
-  start();	
-}
+  start();  
+} 
