@@ -16,12 +16,10 @@ body {
 	border-radius: 5px;
 	line-height:50px;
 	font-size: 32px;
-	font-weight: #7b917b;
+	font-weight: bold;
 	text-align: center;
 	vertical-align: top;
+	background: -moz-radial-gradient(center, ellipse cover, #7b917b, #ffcfcf);
+    background: -webkit-linear-gradient(top, #7b917b, #ffcfcf);
 	display: inline-block;
-}
-.inform_block {
-	width: 440px;
-	font-size: 14px;
 }
